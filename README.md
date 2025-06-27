@@ -1,101 +1,44 @@
-# Multi-modal RAG for Chemical Engineering
+# ChemE GPT
 
-This repository contains the code and resources to build a multi-modal Retrieval-Augmented Generation (RAG) system tailored for chemical engineering content. The system can ingest a PDF textbook and answer questions about its text, tables, and even the content within its images and diagrams.
+### A Tool Born From Frustration
 
-## Features
+This RAG model was made out of frustration as a chemical engineering student. Unlike more popular majors like CS, ChemE has precious few resources to learn from outside the classroom. Our best bet is usually a 1,000-page textbook.
 
-* **Multi-modal Ingestion**: Processes text, tables, and images from PDF documents using `unstructured.io`.
-* **Advanced Retrieval**: Employs a `MultiVectorRetriever` strategy, searching over concise summaries of content for higher accuracy.
-* **Hybrid LLM Approach**: Uses fast, open-source models (via Groq) for text summarization and powerful multi-modal models (like GPT-4o) for image analysis.
-* **Reproducible Environment**: Includes a `requirements.txt` and clear setup instructions for easy replication.
+So, instead of spending another 8 hours on my thermodynamics homework looking for one very specific equation, I built this. This RAG system is designed to help me find information faster and give me better answers than traditional LLMs that hallucinate like crazy.
 
-## Repository Structure
+## File Structure
 
-```
+The repository is organized as follows:
+
+\`\`\`
 multi-modal-rag-cheme/
 │
 ├── .gitignore
-├── content/
+├── content/            # Directory to hold your source PDF document
 │   └── YOUR_PDF_FILE.pdf
-├── RAG_Notebook.ipynb
+├── cheme_rag.ipynb
 ├── LICENSE
 ├── README.md
 └── requirements.txt
-```
+\`\`\`
 
-## Setup and Installation
+## How It Works
 
-Follow these steps to set up the project environment. This system is designed to run in a Linux environment (WSL on Windows is recommended).
+The notebook executes a four-stage process to enable the RAG pipeline:
 
-### 1. System-Level Dependencies
+1.  **Document Parsing:** The system first parses a source PDF and uses the \`unstructured.io\` library to break it down into its constituent parts. It separates standard text paragraphs from tables and also extracts all visual elements like charts and diagrams.
 
-First, install the necessary libraries for PDF and image processing. On a Debian/Ubuntu-based system, run:
+2.  **Smart Summarization:** To improve search accuracy, a summary is generated for every single piece of content. A fast text model (using the **Groq API**) summarizes the text and tables, while a vision model like **Azure GPT-4o-mini** creates detailed descriptions for each image, plot, and diagram.
 
-```bash
-sudo apt-get update && sudo apt-get install -y poppler-utils tesseract-ocr libmagic-dev
-```
+3.  **Advanced Indexing:** The system uses **LangChain's** \`MultiVectorRetriever\` strategy. The *summaries* are converted into numerical vectors using an **Azure** embedding model and stored in a \`ChromaDB\` vector database, creating an efficient search index. The original, full-detail content (the actual text and images) is stored separately and linked to these summaries.
 
-### 2. Clone the Repository
+4.  **Answer Synthesis:** When you ask a question, the system searches the vector database to find the most relevant *summaries*. It then retrieves the original, full-resolution content associated with those summaries. This context, containing both text and images, is assembled into a prompt and sent to the **Azure GPT-4o-mini** model to create a final, comprehensive answer.
 
-```bash
-git clone https://github.com/KushMathur/multi-modal-rag-cheme.git
-cd multi-modal-rag-cheme
-```
+## Technology Stack
 
-### 3. Create and Activate a Python Virtual Environment
-
-```bash
-# Create the virtual environment
-python3 -m venv venv
-
-# Activate the environment
-source ./venv/bin/activate
-```
-
-### 4. Install Python Dependencies
-
-All required Python packages are listed in `requirements.txt`.
-
-```bash
-pip install -r requirements.txt
-```
-
-### 5. Configure API Keys
-
-Create a file named `.env` in the root of the project folder. You can do this with the command `touch .env`. Then, open the file and paste the following content into it, replacing the placeholders with your secret API keys.
-
-```
-# Azure OpenAI - Multi-modal LLM (for generation and image summaries)
-OPENAI_API_TYPE="azure"
-AZURE_OPENAI_ENDPOINT="YOUR_MULTIMODAL_LLM_ENDPOINT"
-OPENAI_API_VERSION="YOUR_MULTIMODAL_LLM_API_VERSION"
-AZURE_OPENAI_API_KEY="YOUR_MULTIMODAL_LLM_API_KEY"
-AZURE_OPENAI_DEPLOYMENT_NAME="YOUR_MULTIMODAL_LLM_DEPLOYMENT_NAME"
-
-# Azure OpenAI - Embedding Model
-AZURE_EMBEDDING_ENDPOINT="YOUR_EMBEDDING_MODEL_ENDPOINT"
-AZURE_EMBEDDING_API_KEY="YOUR_EMBEDDING_MODEL_API_KEY"
-AZURE_EMBEDDING_DEPLOYMENT_NAME="YOUR_EMBEDDING_MODEL_DEPLOYMENT_NAME"
-EMBEDDING_API_VERSION="YOUR_EMBEDDING_MODEL_API_VERSION"
-
-# Groq API (for fast text summarization)
-GROQ_API_KEY="YOUR_GROQ_API_KEY"
-
-# LangChain API (for tracing/debugging, optional)
-LANGCHAIN_API_KEY="YOUR_LANGCHAIN_API_KEY"
-LANGCHAIN_TRACING_V2="false"
-```
-
-## How to Run in VS Code
-
-1.  **Place Your PDF**: Add the PDF file you want to process into the `content/` directory.
-2.  **Open Project in VS Code**: Open the entire `multi-modal-rag-cheme` folder in Visual Studio Code.
-3.  **Select the Python Kernel**:
-    * Open the `RAG_Notebook.ipynb` file.
-    * Click the "Select Kernel" button in the top-right corner of the notebook editor.
-    * From the dropdown list, choose the Python interpreter associated with your virtual environment (it should include `./venv/bin/python`).
-4.  **Run the Notebook**: With the correct kernel selected, you can now run the cells sequentially to process your document and query the RAG system.
-
-## License
-
-This project is licensed under the MIT License. See the `LICENSE` file for details.
+* **Azure OpenAI Service:** Provides the core AI capabilities, including the multi-modal LLM for final answer generation and image analysis, and the embedding model for vectorizing the summaries.
+* **LangChain:** Acts as the primary framework to connect all the components, create the RAG pipeline, and implement the \`MultiVectorRetriever\` logic.
+* **Unstructured.io:** The data parsing library for extracting and separating the text, tables, and images from the source PDF.
+* **Groq API:** Used to access high-speed language models for summarization of all text-based content.
+* **ChromaDB:** An open-source vector database that stores the summary embeddings and enables fast similarity searches.
+* **VS Code + WSL:** The development and runtime environment for the project.
