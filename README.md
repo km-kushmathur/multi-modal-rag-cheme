@@ -25,11 +25,11 @@ multi-modal-rag-cheme
 
 The notebook executes a four-stage process to enable the RAG pipeline:
 
-1.  **Document Parsing:** The system first parses a source PDF and uses the \`unstructured.io\` library to break it down into its constituent parts. It separates standard text paragraphs from tables and also extracts all visual elements like charts and diagrams.
+1.  **Document Parsing:** The system first parses a source PDF and uses the `unstructured.io` library to break it down into its constituent parts. It separates standard text paragraphs from tables and also extracts all visual elements like charts and diagrams.
 
 2.  **Smart Summarization:** To improve search accuracy, a summary is generated for every single piece of content. A fast text model (using the **Groq API**) summarizes the text and tables, while a vision model like **Azure GPT-4o-mini** creates detailed descriptions for each image, plot, and diagram.
 
-3.  **Advanced Indexing:** The system uses **LangChain's** \`MultiVectorRetriever\` strategy. The *summaries* are converted into numerical vectors using an **Azure** embedding model and stored in a \`ChromaDB\` vector database, creating an efficient search index. The original, full-detail content (the actual text and images) is stored separately and linked to these summaries.
+3.  **Advanced Indexing:** The system uses **LangChain's** `MultiVectorRetriever` strategy. The *summaries* are converted into numerical vectors using an **Azure** embedding model and stored in a `ChromaDB` vector database, creating an efficient search index. The original, full-detail content (the actual text and images) is stored separately and linked to these summaries.
 
 4.  **Answer Synthesis:** When you ask a question, the system searches the vector database to find the most relevant *summaries*. It then retrieves the original, full-resolution content associated with those summaries. This context, containing both text and images, is assembled into a prompt and sent to the **Azure GPT-4o-mini** model to create a final, comprehensive answer.
 
