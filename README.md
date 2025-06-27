@@ -10,17 +10,16 @@ So, instead of spending another 8 hours on my thermodynamics homework looking fo
 
 The repository is organized as follows:
 
-\`\`\`
-multi-modal-rag-cheme/
-│
+```
+multi-modal-rag-cheme
 ├── .gitignore
-├── content/            # Directory to hold your source PDF document
+├── content              # Directory to hold your source PDF document
 │   └── YOUR_PDF_FILE.pdf
 ├── cheme_rag.ipynb
 ├── LICENSE
 ├── README.md
 └── requirements.txt
-\`\`\`
+```
 
 ## How It Works
 
