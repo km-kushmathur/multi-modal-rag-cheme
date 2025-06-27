@@ -1,0 +1,18 @@
+# Core processing and data libraries
+unstructured[all-docs]
+pillow
+lxml
+chromadb
+tiktoken
+python-dotenv
+
+# LangChain libraries
+langchain
+langchain-community
+langchain-openai
+langchain-groq
+langchain-chroma
+
+# Jupyter environment
+jupyter
+ipykernel
