@@ -2,7 +2,7 @@
 
 ### A Tool Born From Frustration
 
-This RAG model was made out of frustration as a chemical engineering student. Unlike more popular majors like CS, ChemE has precious few resources to learn from outside the classroom. Our best bet is usually a 1,000-page textbook.
+This Retrieval-Augmented Generation model was made out of frustration as a chemical engineering student. Unlike more popular majors like CS, ChemE has precious few resources to learn from outside the classroom. Our best bet is usually a 1,000-page textbook.
 
 So, instead of spending another 8 hours on my thermodynamics homework looking for one very specific equation, I built this. This RAG system is designed to help me find information faster and give me better answers than traditional LLMs that hallucinate like crazy.
 
