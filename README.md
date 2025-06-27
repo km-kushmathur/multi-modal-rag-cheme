@@ -17,9 +17,7 @@ multi-modal-rag-cheme/
 ├── .gitignore
 ├── content/
 │   └── YOUR_PDF_FILE.pdf
-├── notebooks/
-│   └── RAG_Notebook.ipynb
-├── .env.example
+├── RAG_Notebook.ipynb
 ├── LICENSE
 ├── README.md
 └── requirements.txt
@@ -39,10 +37,8 @@ sudo apt-get update && sudo apt-get install -y poppler-utils tesseract-ocr libma
 
 ### 2. Clone the Repository
 
-(This step is for others using your repo. You will connect your local folder to GitHub in a later step).
-
 ```bash
-git clone https://github.com/YOUR_USERNAME/multi-modal-rag-cheme.git
+git clone https://github.com/KushMathur/multi-modal-rag-cheme.git
 cd multi-modal-rag-cheme
 ```
 
@@ -66,26 +62,39 @@ pip install -r requirements.txt
 
 ### 5. Configure API Keys
 
-The project requires API keys from Azure, Groq, and optionally LangChain for tracing.
+Create a file named `.env` in the root of the project folder. You can do this with the command `touch .env`. Then, open the file and paste the following content into it, replacing the placeholders with your secret API keys.
 
-```bash
-# 1. Copy the example .env file
-cp .env.example .env
+```
+# Azure OpenAI - Multi-modal LLM (for generation and image summaries)
+OPENAI_API_TYPE="azure"
+AZURE_OPENAI_ENDPOINT="YOUR_MULTIMODAL_LLM_ENDPOINT"
+OPENAI_API_VERSION="YOUR_MULTIMODAL_LLM_API_VERSION"
+AZURE_OPENAI_API_KEY="YOUR_MULTIMODAL_LLM_API_KEY"
+AZURE_OPENAI_DEPLOYMENT_NAME="YOUR_MULTIMODAL_LLM_DEPLOYMENT_NAME"
 
-# 2. Edit the .env file with your secret keys using a text editor
-nano .env
+# Azure OpenAI - Embedding Model
+AZURE_EMBEDDING_ENDPOINT="YOUR_EMBEDDING_MODEL_ENDPOINT"
+AZURE_EMBEDDING_API_KEY="YOUR_EMBEDDING_MODEL_API_KEY"
+AZURE_EMBEDDING_DEPLOYMENT_NAME="YOUR_EMBEDDING_MODEL_DEPLOYMENT_NAME"
+EMBEDDING_API_VERSION="YOUR_EMBEDDING_MODEL_API_VERSION"
+
+# Groq API (for fast text summarization)
+GROQ_API_KEY="YOUR_GROQ_API_KEY"
+
+# LangChain API (for tracing/debugging, optional)
+LANGCHAIN_API_KEY="YOUR_LANGCHAIN_API_KEY"
+LANGCHAIN_TRACING_V2="false"
 ```
 
-Fill in the placeholders in the `.env` file with your actual credentials.
-
-## How to Run
+## How to Run in VS Code
 
 1.  **Place Your PDF**: Add the PDF file you want to process into the `content/` directory.
-2.  **Launch Jupyter**: Make sure your `venv` is activated and run:
-    ```bash
-    jupyter notebook
-    ```
-3.  **Open and Run the Notebook**: In the Jupyter interface, navigate to the `notebooks/` directory and open `RAG_Notebook.ipynb`. Run the cells sequentially to process your document and query the RAG system.
+2.  **Open Project in VS Code**: Open the entire `multi-modal-rag-cheme` folder in Visual Studio Code.
+3.  **Select the Python Kernel**:
+    * Open the `RAG_Notebook.ipynb` file.
+    * Click the "Select Kernel" button in the top-right corner of the notebook editor.
+    * From the dropdown list, choose the Python interpreter associated with your virtual environment (it should include `./venv/bin/python`).
+4.  **Run the Notebook**: With the correct kernel selected, you can now run the cells sequentially to process your document and query the RAG system.
 
 ## License
 
