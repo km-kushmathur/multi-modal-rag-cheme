@@ -41,3 +41,9 @@ The notebook executes a four-stage process to enable the RAG pipeline:
 * **Groq API:** Used to access high-speed language models for summarization of all text-based content.
 * **ChromaDB:** An open-source vector database that stores the summary embeddings and enables fast similarity searches.
 * **VS Code + WSL:** The development and runtime environment for the project.
+
+## Disclaimer
+
+This repository and notebook are provided as an example script intended only for local experimentation and educational purposes.
+
+If you plan on sharing this code or uploading it to a public repository, please create an alternate `.env` file to safely store your API keys and ensure that file is added to your `.gitignore` to prevent accidental exposure of sensitive credentials.
