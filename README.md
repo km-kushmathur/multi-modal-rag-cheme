@@ -36,7 +36,7 @@ The notebook executes a four-stage process to enable the RAG pipeline:
 ## Technology Stack
 
 * **Azure OpenAI Service:** Provides the core AI capabilities, including the multi-modal LLM for final answer generation and image analysis, and the embedding model for vectorizing the summaries.
-* **LangChain:** Acts as the primary framework to connect all the components, create the RAG pipeline, and implement the \`MultiVectorRetriever\` logic.
+* **LangChain:** Acts as the primary framework to connect all the components, create the RAG pipeline, and implement the `MultiVectorRetriever` logic.
 * **Unstructured.io:** The data parsing library for extracting and separating the text, tables, and images from the source PDF.
 * **Groq API:** Used to access high-speed language models for summarization of all text-based content.
 * **ChromaDB:** An open-source vector database that stores the summary embeddings and enables fast similarity searches.
