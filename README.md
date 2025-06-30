@@ -53,7 +53,7 @@ git clone https://github.com/km-kushmathur/multi-modal-rag-cheme.git
 
 2. Enter the root folder:
 ```bash
-cd multi-modal-rag-cheme.git
+cd multi-modal-rag-cheme
 ```
 
 3. Install system-level dependencies:
