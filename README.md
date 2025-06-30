@@ -42,6 +42,35 @@ The notebook executes a four-stage process to enable the RAG pipeline:
 * **ChromaDB:** An open-source vector database that stores the summary embeddings and enables fast similarity searches.
 * **VS Code + WSL:** The development and runtime environment for the project.
 
+## Getting Started
+
+Follow these instructions to set up your local environment. This assumes you are operating in a Linux-based environment (such as Ubuntu or WSL).
+
+1. Clone the repository:
+```bash
+git clone https://github.com/km-kushmathur/multi-modal-rag-cheme.git
+```
+
+2. Enter the root folder:
+```bash
+cd multi-modal-rag-cheme.git
+```
+
+3. Install system-level dependencies:
+```bash
+sudo apt-get update && sudo apt-get install -y poppler-utils tesseract-ocr libmagic-dev
+```
+
+4. Create a virtual enviornment:
+```bash
+python3 -m venv venv
+```
+
+5. Activate the environment (must be done every time you start a new session)
+```bash
+source ./venv/bin/activate
+```
+
 ## Disclaimer
 
 This repository and notebook are provided as an example script intended only for local experimentation and educational purposes.
