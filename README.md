@@ -42,6 +42,8 @@ The notebook executes a four-stage process to enable the RAG pipeline:
 * **ChromaDB:** An open-source vector database that stores the summary embeddings and enables fast similarity searches.
 * **VS Code + WSL:** The development and runtime environment for the project.
 
+* **Approximate Cost:** In my development, for a ~700 page textbook, with ~650 vision requiring elements (images, tables, plots), it cost **$1.25** in API calls using `gpt-4o-mini` and `text-embedding-3-small`.
+
 ## Getting Started
 
 Follow these instructions to set up your local environment. This assumes you are operating in a Linux-based environment (such as Ubuntu or WSL).
