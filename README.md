@@ -36,13 +36,12 @@ The notebook executes a four-stage process to enable the RAG pipeline:
 ## Technology Stack
 
 * **Azure AI Foundry:** Provides the core AI capabilities, including the multi-modal LLM for final answer generation and image analysis, and the embedding model for vectorizing the summaries.
+  * **Approximate Cost:** In my development, for a ~700 page textbook, with ~650 vision requiring elements (images, tables, plots), it cost **$1.25** in API calls using `gpt-4o-mini` and `text-embedding-3-small`.
 * **LangChain:** Acts as the primary framework to connect all the components, create the RAG pipeline, and implement the `MultiVectorRetriever` logic.
 * **Unstructured.io:** The data parsing library for extracting and separating the text, tables, and images from the source PDF.
 * **Groq:** Used to access open source LLMs for summarization of all text-based content (don't need a paid vision model for text summaries).
 * **ChromaDB:** An open-source vector database that stores the summary embeddings and enables fast similarity searches.
 * **VS Code + WSL:** The development and runtime environment for the project.
-
-* **Approximate Cost:** In my development, for a ~700 page textbook, with ~650 vision requiring elements (images, tables, plots), it cost **$1.25** in API calls using `gpt-4o-mini` and `text-embedding-3-small`.
 
 ## Getting Started
 
