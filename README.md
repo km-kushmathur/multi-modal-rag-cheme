@@ -13,7 +13,7 @@ The repository is organized as follows:
 ```
 multi-modal-rag-cheme
 ├── .gitignore
-├── content              # Directory to hold your source PDF document
+├── content              # Directory to hold your source PDF document (must be added by you)
 │   └── YOUR_PDF_FILE.pdf
 ├── cheme_rag.ipynb
 ├── LICENSE
