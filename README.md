@@ -29,7 +29,7 @@ The notebook executes a four-stage process to enable the RAG pipeline:
 
 2.  **Summarization:** To improve search accuracy, a summary is generated for every single piece of content. A text model, like `gemma2-9b-it`, summarizes the text and tables, while a vision model, like `gpt-4o-mini`, creates detailed descriptions for each image, plot, and diagram.
 
-3.  **Vectorization:** The system uses LangChain's `MultiVectorRetriever` strategy. The summaries are converted into vectors using an embedding model, like `text-embedding-3-small`, and stored in a ChromaDB vector database, creating an efficient search index. The original, full-detail content (the actual text and images) is stored separately and linked to these summaries.
+3.  **Vectorization:** The system uses LangChain's [`MultiVectorRetriever`](https://python.langchain.com/api_reference/langchain/retrievers/langchain.retrievers.multi_vector.MultiVectorRetriever.html) strategy. The summaries are converted into vectors using an embedding model, like `text-embedding-3-small`, and stored in a ChromaDB vector database, creating an efficient search index. The original, full-detail content (the actual text and images) is stored separately and linked to these summaries.
 
 4.  **Generating Answer:** When you ask a question, the system searches the vector database to find the most relevant summaries. It then retrieves the original, full-resolution content associated with those summaries. This context, containing both text and images, is assembled into a prompt and sent to the multi-modal LLM to create a final, comprehensive answer.
 
