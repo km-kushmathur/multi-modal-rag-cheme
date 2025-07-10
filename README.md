@@ -62,7 +62,7 @@ cd multi-modal-rag-cheme
 sudo apt-get update && sudo apt-get install -y poppler-utils tesseract-ocr libmagic-dev
 ```
 
-4. Create a virtual enviornment:
+4. Create a virtual environment:
 ```bash
 python3 -m venv venv
 ```
