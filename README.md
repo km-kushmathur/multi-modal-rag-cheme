@@ -45,7 +45,7 @@ The notebook executes a four-stage process to enable the RAG pipeline:
 
 ## Getting Started
 
-Follow these instructions to set up your local environment. This assumes you are operating in a Linux-based environment (such as Ubuntu or WSL).
+Follow these instructions to set up your development environment. This assumes you are operating in a Linux-based environment (such as Ubuntu or WSL).
 
 1. Clone the repository:
 ```bash
