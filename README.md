@@ -1,6 +1,6 @@
 # ChemE GPT
 
-### A Tool Born From Frustration
+## A Tool Born From Frustration
 
 This Retrieval-Augmented Generation model was made out of frustration as a chemical engineering student. Unlike more popular majors like CS, ChemE has precious few resources to learn from outside the classroom. Our best bet is usually a 1,000-page textbook.
 
